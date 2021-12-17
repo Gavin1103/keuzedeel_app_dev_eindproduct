@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Distance Meter</title>
+</head>
+
+<body>
+    <div id="container">
+
+        <nav>
+            <h1>Distance Meter</h1>
+            <form action="#" method="#">
+                <input id="jouw_locatie" placeholder="kies locatie" class="invoer_locatie" type="text">
+                <input id="gekozen_locatie" placeholder="Kies locatie" class="invoer_locatie" type="text">
+                <button onclick="getLocation()" type="submit" value="Bereken">Berkenen</button>
+            </form>
+        </nav>
+        <div class="container">
+            <main class="main_boven">
+                <ul>
+                    <ol><button class="eenheid_button">in KM</button></ol>
+                    <ol><button onclick="convertKmToMeter()" class="eenheid_button">in M</button></ol>
+                    <ol><button onclick="convertKmToMiles()" class="eenheid_button">in miles</button></ol>
+                </ul>
+            </main>
+            <main class="main_onder">
+                <div id="resultaat">
+                    100 KM
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+    <script src="./functions/functions.js"></script>
+</body>
+
+</html>
