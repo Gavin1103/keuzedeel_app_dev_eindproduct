@@ -1,0 +1,42 @@
+@media only screen and (max-width: 900px) {
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        border-right: none;
+    }
+
+
+    nav {
+        /* min-height: 800px; */
+        height: 100vh;
+        width: 100%;
+        background-color: #3B3E98;
+    }
+
+    #resultaat-container {
+        width: 100%;
+        height: 100vh;
+        display: none;
+    }
+
+    #titel-container {
+        margin-top: 25px;
+    }
+
+
+    #bereken_knop_qry{
+        display: block;
+    }
+    
+
+    #bereken_knop{
+        display: none;
+    }
+
+    #terug_button{
+        display: block;
+        
+    }
+}

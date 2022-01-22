@@ -6,23 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/mediaqry.css">
+    
     <title>Distance Meter</title>
 </head>
 
 <body>
     <div id="container">
 
-        <nav>
-            <h1>Distance Meter</h1>
+        <nav id="nav-container">
+            <div id="titel-container">
+                <h1>Distance Meter</h1>
+                <button class="setting_knop" onclick="showSettings()">instellingen</button>
+                
+            </div>
             <form action="#" method="#">
+                <h2 id="locatie_text">Zet je locatie aan</h2>
                 <input id="jouw_locatie" placeholder="kies locatie" class="invoer_locatie" type="text">
                 <input id="gekozen_locatie" placeholder="Kies locatie" class="invoer_locatie" type="text">
-                <button onclick="getLocation()" type="submit" value="Bereken">Berkenen</button>
+                <button id="bereken_knop" class="berekenKnop" onclick="berekenAfstand()" type="submit" value="Bereken">Berkenen</button>
+                <button id="bereken_knop_qry" class="berekenKnop" onclick="berekenAfstandQRY()" type="submit" value="Bereken">Berkenen</button>
             </form>
         </nav>
-        <div class="container">
+        <div id="resultaat-container">
             <main class="main_boven">
                 <ul>
+                    <button onclick="terug()" id="terug_button" class="eenheid_button">terug</button>
                     <ol><button class="eenheid_button">in KM</button></ol>
                     <ol><button onclick="convertKmToMeter()" class="eenheid_button">in M</button></ol>
                     <ol><button onclick="convertKmToMiles()" class="eenheid_button">in miles</button></ol>
@@ -35,7 +44,14 @@
             </main>
         </div>
     </div>
-    <script src="./index.js"></script>
+
+    <div id="container_settings">
+        <button class="setting_knop" onclick="hideSettings()">sluit instellingen</button>
+        <button id="locatie_aan_knop" class="setting_knop">Locatie aan</button>
+        <button class="setting_knop" onclick="getLongitudeCoords()">Locatie uit</button>
+    </div>
+
+
     <script src="./functions/functions.js"></script>
 </body>
 
