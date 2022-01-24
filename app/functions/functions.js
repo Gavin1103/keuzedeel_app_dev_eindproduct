@@ -5,7 +5,7 @@ console.log("fuctions.js");
 let jouwLocatie = document.getElementById("jouw_locatie");
 let gekozenLocatie = document.getElementById("gekozen_locatie");
 const factor = 0.621371;
-let resultaat = document.getElementById("resultaat");
+// let resultaat = document.getElementById("in_kilo");
 
 
 
@@ -25,16 +25,14 @@ function hideSettings() {
     container_settings.style = "display: none";
 }
 
+
+
+
+
 function berekenAfstandQRY() {
-    if (jouwLocatie.value && gekozenLocatie.value != "") {
-        alert("gay");
-    } else {
-        alert(" beide vakken in")
-    }
+
     nav_container.style = "display:none";
     resultaat_container.style = "display:block";
-
-
 }
 
 function terug() {
@@ -43,33 +41,25 @@ function terug() {
 }
 
 
-function berekenAfstand() {
 
 
-
-    if (jouwLocatie.value && gekozenLocatie.value != "") {
-        alert("hello");
-    } else {
-        alert("Vul beide vakken in")
-    }
-}
 
 function convertKmToMiles() {
 
-
-    let kilometer = 100;
+    let resultaat = document.getElementById("in_kilo");
+    // let kilometer = 100;
     let factor = 0.621371
-    let miles = kilometer * factor;
+    let miles = resultaat * factor;
 
     let roundMiles = Math.round(miles);
     resultaat.innerHTML = `${roundMiles} miles`
 }
 
 function convertKmToMeter() {
-
-    let kilometer = 100;
+    let resultaat = document.getElementById("in_kilo");
+    // let kilometer = 100;
     let factor = 1000
-    let meter = kilometer * factor;
+    let meter = resultaat * factor;
 
     let roundMeter = Math.round(meter);
     resultaat.innerHTML = `${roundMeter} meter`
@@ -92,40 +82,49 @@ const turnOnLocation = () => {
 
     var locationStatus = document.getElementById("locatie_text");
     // var gekozen_locatie = document.getElementById("jouw_locatie");
-
     const succes = (position) => {
         console.log(position)
         const latitude = position.coords.latitude
         const longitude = position.coords.longitude
 
         const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-
         fetch(geoApiUrl)
             .then(res => res.json())
             .then(data => {
-                locationStatus.textContent = data.locality
-                jouwLocatie.style = "display:none"
+                locationStatus.textContent = "locatie staat aan"
+                jouwLocatie.value = data.locality
+                // + ", " + data.countryName
+                // jouwLocatie.style = "display:none"
             })
     }
-
     const error = () => {
         locationStatus.textContent = "locatie uit";
         gekozen_locatie.style = "display:flex"
     }
-
     navigator.geolocation.getCurrentPosition(succes, error);
-
 }
-
 var locationOn = document.getElementById("locatie_aan_knop");
 locationOn.addEventListener('click', turnOnLocation);
 
 
 
-// const turnOffLocation = () => {
+const turnOffLocation = (position) => {
+
+    var locationStatus = document.getElementById("locatie_text");
+    console.log(position)
+    const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=XXXXXX&longitude=XXXXXX&localityLanguage=en`
+    fetch(geoApiUrl)
+        .then(res => res.json())
+        .then(data => {
+            locationStatus.textContent = "Locatie staat uit"
+            jouwLocatie.value = ""
+            // jouwLocatie.style = "display:block"
+        })
+}
+var locationOn = document.getElementById("locatie_uit_knop");
+locationOn.addEventListener('click', turnOffLocation);
 
 
-// }
 
 
 
