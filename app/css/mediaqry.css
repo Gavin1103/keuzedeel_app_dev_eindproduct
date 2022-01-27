@@ -8,35 +8,32 @@
     }
 
 
-    nav {
-        /* min-height: 800px; */
-        height: 100vh;
+    #nav-container {
+        min-height: 400px;
+        height: 600px;
+        max-height: 800px;
         width: 100%;
         background-color: #3B3E98;
+        
     }
+
+    /* #nav-container{
+        height: 500px;
+    } */
 
     #resultaat-container {
         width: 100%;
-        height: 100vh;
-        display: none;
+        height: 400px;
+        /* display: none; */
     }
 
     #titel-container {
         margin-top: 25px;
     }
 
-
-    #bereken_knop_qry{
-        display: block;
-    }
-    
-
-    #bereken_knop{
-        display: none;
+    .eenheid_button{
+        margin-bottom: 20px;
     }
 
-    #terug_button{
-        display: block;
-        
-    }
+
 }

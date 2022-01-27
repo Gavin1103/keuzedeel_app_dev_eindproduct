@@ -5,17 +5,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyDiF0oKh8vUvXGU8FAPfY1WQxHbd2e86UU"
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyDOCbS_05VJ1XrF-aSj8C__j70pAMXgsZ0"
         type="text/javascript"></script>
 
 
+    <link rel="manifest" href="./manifest.webmanifest">
+    <!-- <script src="./sw.js"></script> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/mediaqry.css">
 
-    <title>Distance Meter</title>
+    <title>Distance Calculator</title>
 </head>
 
 <body>
@@ -27,63 +29,32 @@
                 <button class="setting_knop" onclick="showSettings()">instellingen</button>
 
             </div>
-
-
-            <!-- <form id="distance_form">
-                <h2 id="locatie_text">Zet je locatie aan</h2>
-                <input id="jouw_locatie" placeholder="kies locatie" class="invoer_locatie" type="text">
-                <input id="gekozen_locatie" placeholder="Kies locatie" class="invoer_locatie" type="text">
-
-                <button id="bereken_knop" class="berekenKnop" onclick="berekenAfstand()" type="submit"
-                    value="Bereken">Berkenen</button>
-                <button id="bereken_knop_qry" class="berekenKnop" onclick="berekenAfstandQRY()" type="submit"
-                    value="Bereken">Berkenen</button>
-            </form> -->
-
-
-
             <form id="distance_form">
                 <h2 id="locatie_text">Zet je locatie aan</h2>
-             
-                    
-                    <input class="invoer_locatie" id="jouw_locatie" placeholder="Enter a location" />
-                    <input id="origin" name="origin" required="" type="hidden" />
-                
-             
-                    <input class="invoer_locatie" id="gekozen_locatie" placeholder="Enter a location" />
-                    <input id="destination" name="destination" required="" type="hidden" />
-                <input class="btn btn-primary" type="submit" value="Calculate" />
+
+
+                <input class="invoer_locatie" id="jouw_locatie" placeholder="Enter a location" />
+                <input id="origin" name="origin" required="" type="hidden" />
+
+
+                <input class="invoer_locatie" id="gekozen_locatie" placeholder="Enter a location" />
+                <input id="destination" name="destination" required="" type="hidden" />
+                <input class="eenheid_button" type="submit" value="Calculate" />
             </form>
-
-
-
-
-
-
-
-
-
 
         </nav>
 
 
 
         <div id="resultaat-container">
-            <main class="main_boven">
-                <ul>
-                    <button onclick="terug()" id="terug_button" class="eenheid_button">terug</button>
-                    <ol><button class="eenheid_button">in KM</button></ol>
-                    <ol><button onclick="convertKmToMeter()" class="eenheid_button">in M</button></ol>
-                    <ol><button onclick="convertKmToMiles()" class="eenheid_button">in miles</button></ol>
-                </ul>
-            </main>
             <main class="main_onder">
+                <!-- <button onclick="terug()" id="terug_button" class="eenheid_button">terug</button> -->
                 <div id="result">
                     <label for="in_kilo">Afstand in KM:</label>
-                    <h2 id="in_kilo">afstand</h2>
+                    <h2 class="resultaat_h2" id="in_kilo">afstand</h2>
 
                     <label for="in_mile">Afstand in Mile:</label>
-                    <h2 id="in_mile">afstand</h2>
+                    <h2 class="resultaat_h2" id="in_mile">afstand</h2>
                 </div>
             </main>
         </div>
@@ -103,8 +74,10 @@
         $(function () {
             // add input listeners
             google.maps.event.addDomListener(window, 'load', function () {
-                var from_places = new google.maps.places.Autocomplete(document.getElementById('jouw_locatie'));
-                var to_places = new google.maps.places.Autocomplete(document.getElementById('gekozen_locatie'));
+                var from_places = new google.maps.places.Autocomplete(document.getElementById(
+                    'jouw_locatie'));
+                var to_places = new google.maps.places.Autocomplete(document.getElementById(
+                    'gekozen_locatie'));
 
                 google.maps.event.addListener(from_places, 'place_changed', function () {
                     var from_place = from_places.getPlace();
@@ -146,18 +119,11 @@
                             " and " + destination);
                     } else {
                         var distance = response.rows[0].elements[0].distance;
-                        var duration = response.rows[0].elements[0].duration;
                         console.log(response.rows[0].elements[0].distance);
                         var distance_in_kilo = distance.value / 1000; // the kilom
                         var distance_in_mile = distance.value / 1609.34; // the mile
-                        var duration_text = duration.text;
-                        var duration_value = duration.value;
                         $('#in_mile').text(distance_in_mile.toFixed(0));
                         $('#in_kilo').text(distance_in_kilo.toFixed(0));
-                        $('#duration_text').text(duration_text);
-                        $('#duration_value').text(duration_value);
-                        $('#from').text(origin);
-                        $('#to').text(destination);
                     }
                 }
             }

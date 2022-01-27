@@ -1,17 +1,36 @@
 console.log("fuctions.js");
 
-// afstand berekenen
+
 
 let jouwLocatie = document.getElementById("jouw_locatie");
 let gekozenLocatie = document.getElementById("gekozen_locatie");
 const factor = 0.621371;
-// let resultaat = document.getElementById("in_kilo");
-
-
 
 let container = document.getElementById("container");
 let resultaat_container = document.getElementById("resultaat-container");
 let nav_container = document.getElementById("nav-container");
+
+window.addEventListener('load', () => {
+
+    registerSW();
+
+})
+
+async function registerSW(){
+
+    if("serviceWorker" in navigator){
+        try{
+            await navigator.serviceWorker.register("./sw.js");
+        }
+        catch(e){
+            console.log("SW registration failed");
+        }
+    }
+}
+
+
+
+
 
 
 function showSettings() {
@@ -128,13 +147,13 @@ locationOn.addEventListener('click', turnOffLocation);
 
 
 
-window.addEventListener("resize", function () {
-    if (window.matchMedia("(min-width: 900px)").matches) {
-        console.log("Screen width is at least 900px");
-        resultaat_container.style = "display:block";
-        nav_container.style = "display:block";
-    } else {
-        console.log("Screen less than 900px");
-        resultaat_container.style = "display:none";
-    }
-})
+// window.addEventListener("resize", function () {
+//     if (window.matchMedia("(min-width: 900px)").matches) {
+//         console.log("Screen width is at least 900px");
+//         resultaat_container.style = "display:block";
+//         nav_container.style = "display:block";
+//     } else {
+//         console.log("Screen less than 900px");
+//         resultaat_container.style = "display:none";
+//     }
+// })

@@ -1,0 +1,13 @@
+{
+    "name": "Distance Calculator",
+    "short_name": "DC",
+    "start_url": ".",
+    "display":"standalone",
+    "background_color":"#fff",
+    "description": "PWA App",
+    "icons": [{
+        "src": "img/logoAPP.png",
+        "sizes": "709x709",
+        "type": "image/png"
+    }]
+}
